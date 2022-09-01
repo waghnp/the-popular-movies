@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
+.banner-card{
+  position: relative;
+  width: 100vw;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+  height: 75vh;
+  color: whitesmoke;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.banner-img{
+  width: 100vw;
+  height: 70vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.banner-title{
+  position: absolute;
+  top:45vh;
+  left:5vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.banner-text{
+  position: absolute;
+  top:55vh;
+  left:5vw;
+  height: 4.5rem;
+  overflow: hidden;
+  margin-right: 5vw ;
+}
+.movies-list{
+  display: flex ;
+  flex-wrap: wrap;
+  padding: 1rem;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.movies-card{
+  width: 20vw;
+  /* height: 40vh; */
+  margin: 1rem;
+  color: whitesmoke;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.movies-img{
+  width: 20vw;
+  height: 40vh;
+}
+
+.movies-title{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.movies-button{
+  position: absolute;
+  bottom: 2rem;
+}
+.button-wrapper{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.movies-pagination{
+  display: flex;
+  justify-content: center;
+}
+@media Screen and (max-width:400px){
+  .banner-card{
+    height: 30vh;
   }
-  to {
-    transform: rotate(360deg);
+
+  .banner-img{
+    height: 30vh;
+  }
+
+  .banner-title{
+    top:12vh;
+    left:5vw
+  }
+  .banner-text{
+    top: 17vh;
+    left: 5vw;
+  }
+
+  .movies-card{
+    width: 40vw;
+    height: 30vh;
+    margin: 0.3rem;
+  }
+  .movies-img{
+    width: 40vw;
   }
 }
