@@ -8,7 +8,8 @@ export default class Movies extends Component {
       hover:'',
       pagination:[1],
       currentPage:1,
-      moviesList:[]
+      moviesList:[], 
+      favourites:[]
     }
   }
   async componentDidMount(){
@@ -59,6 +60,24 @@ export default class Movies extends Component {
       },this.changeMovies)
     }
   }
+  handleFavourites=(movie)=>{
+    let oldFavourites = JSON.parse(localStorage.getItem("movies-app") || "[]");
+    if(this.state.favourites.includes(movie.id)){
+      oldFavourites = oldFavourites.filter(m => m.id != movie.id);
+    }else{
+      oldFavourites.push(movie);
+    }
+    localStorage.setItem("movies-app",JSON.stringify(oldFavourites));
+    console.log(oldFavourites);
+    this.handleFavouritesState();
+  }
+  handleFavouritesState=()=>{
+    let oldFavourites = JSON.parse(localStorage.getItem("movies-app") || "[]");
+    let temp = oldFavourites.map(movie => movie.id);
+    this.setState({
+      favourites : [...temp]
+    })
+  }
   render() {
     // const moviesList = movies.results
     return (
@@ -74,14 +93,14 @@ export default class Movies extends Component {
               <div className='movies-list'>
                   {
                       this.state.moviesList.map((movie) =>
-                      <div className="card movies-card" onMouseEnter={()=>this.setState({hover:movie.id})} onMouseLeave={()=>this.setState({hover:''})} key={movie.id}>
+                      <div key={movie.id } className="card movies-card" onMouseEnter={()=>this.setState({hover:movie.id})} onMouseLeave={()=>this.setState({hover:''})}>
                           <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="card-img-top movies-img" alt={movie.title}/>
                           {/* <div className="card-body"> */}
                               <h5 className="card-title movies-title">{movie.original_title}</h5>
                               {/* <p className="card-text banner-text">{movie.overview}</p> */}
                               <div className='button-wrapper'>
                                 {
-                                  this.state.hover==movie.id && <a className="btn btn-primary movies-button">Add to favourites</a>
+                                  this.state.hover==movie.id && <a className="btn btn-primary movies-button" onClick={()=>this.handleFavourites(movie)}>{this.state.favourites.includes(movie.id)?"Remove from favourites":"Add to favourites"}</a>
                                 }  
                               </div>
                           {/* </div> */}
@@ -91,14 +110,14 @@ export default class Movies extends Component {
               </div>
               <div className='movies-pagination'>
                 <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item"><a class="page-link" onClick={this.handlePrev}>Previous</a></li>
+                  <ul className="pagination">
+                    <li className="page-item"><a className="page-link" onClick={this.handlePrev}>Previous</a></li>
                     {
                       this.state.pagination.map((value)=>
-                        <li class="page-item"><a class="page-link" onClick={()=>this.handleClick(value)}>{value}</a></li>
+                        <li key={value} className="page-item"><a className="page-link" onClick={()=>this.handleClick(value)}>{value}</a></li>
                       )
                     }
-                    <li class="page-item"><a class="page-link" onClick={this.handleNext}>Next</a></li>
+                    <li className="page-item"><a className="page-link" onClick={this.handleNext}>Next</a></li>
                   </ul>
                 </nav>
               </div>
