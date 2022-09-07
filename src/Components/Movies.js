@@ -54,7 +54,7 @@ export default class Movies extends Component {
   }
 
   handleClick=(pageClicked)=>{
-    if(pageClicked!=this.state.currentPage){
+    if(pageClicked!==this.state.currentPage){
       this.setState({
         currentPage:pageClicked
       },this.changeMovies)
@@ -63,7 +63,7 @@ export default class Movies extends Component {
   handleFavourites=(movie)=>{
     let oldFavourites = JSON.parse(localStorage.getItem("movies-app") || "[]");
     if(this.state.favourites.includes(movie.id)){
-      oldFavourites = oldFavourites.filter(m => m.id != movie.id);
+      oldFavourites = oldFavourites.filter(m => m.id !== movie.id);
     }else{
       oldFavourites.push(movie);
     }
@@ -100,7 +100,7 @@ export default class Movies extends Component {
                               {/* <p className="card-text banner-text">{movie.overview}</p> */}
                               <div className='button-wrapper'>
                                 {
-                                  this.state.hover==movie.id && <a className="btn btn-primary movies-button" onClick={()=>this.handleFavourites(movie)}>{this.state.favourites.includes(movie.id)?"Remove from favourites":"Add to favourites"}</a>
+                                  this.state.hover===movie.id && <a className="btn btn-primary movies-button" onClick={()=>this.handleFavourites(movie)}>{this.state.favourites.includes(movie.id)?"Remove from favourites":"Add to favourites"}</ a>
                                 }  
                               </div>
                           {/* </div> */}

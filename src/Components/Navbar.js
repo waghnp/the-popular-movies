@@ -5,7 +5,7 @@ export default class Navbar extends Component {
     return (
       <div style={{display:'flex',padding:'15px'}}>
        <Link to='/' style={{textDecoration:'none'}} > <h1>The Movies</h1> </Link>
-        <Link to='/favourites' style={{textDecoration:'none'}} ><h2 style={{marginLeft:'25px',marginTop:'7px'}}>Favourites</h2></Link>
+        <Link to='/favourites' style={{textDecoration:'none'}} ><h2 style={{marginLeft:'25px',marginTop:'3px'}}>Favourites</h2></Link>
       </div>
     )
   }

@@ -72,6 +72,7 @@
 }
 .favourites-table{
   padding: 3rem;
+  overflow: auto;
 }
 @media Screen and (max-width:400px){
   .banner-card{
